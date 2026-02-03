@@ -1,28 +1,54 @@
-import React from "react";
+import { useState } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+function Home() {
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState("");
 
-//create your first component
-const Home = () => {
-	return (
-		<div className="text-center">
-            
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && input.trim() !== "") {
+      setTodos([...todos, input]);
+      setInput("");
+    }
+  };
 
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
-};
+  const deleteTodo = (index) => {
+    setTodos(todos.filter((_, i) => i !== index));
+  };
+
+  return (
+    <div className="container">
+      <h1>Todo List</h1>
+      <input
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={handleKeyDown}
+        placeholder="Escribe una tarea y presiona Enter..."
+        className="form-control mb-3"
+      />
+
+      {todos.length === 0 ? (
+        <p className="text-muted">No hay tareas, añadir tareas</p>
+      ) : (
+        <ul className="list-group">
+          {todos.map((todo, index) => (
+            <li
+              key={index}
+              className="list-group-item d-flex justify-content-between align-items-center"
+            >
+              {todo}
+              <span
+                className="delete-icon"
+                onClick={() => deleteTodo(index)}
+              >
+                ❌
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 export default Home;

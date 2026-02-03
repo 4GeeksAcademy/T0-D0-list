@@ -9,3 +9,52 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+h1 {
+  text-align: center;
+}
+
+input {
+  padding: 8px;
+  width: 70%;
+  margin-right: 10px;
+}
+
+button {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.delete-icon {
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.list-group-item:hover .delete-icon {
+  visibility: visible;
+}
+.empty-message {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+}
+input.form-control {
+  border-radius: 6px;
+  padding: 10px;
+}
